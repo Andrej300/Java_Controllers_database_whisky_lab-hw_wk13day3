@@ -1,5 +1,6 @@
 package com.codeclan.example.WhiskyTracker;
 
+import com.codeclan.example.WhiskyTracker.components.DataLoader;
 import com.codeclan.example.WhiskyTracker.models.Distillery;
 import com.codeclan.example.WhiskyTracker.models.Whisky;
 import com.codeclan.example.WhiskyTracker.repositories.DistilleryRepository;
@@ -40,4 +41,10 @@ public class WhiskyTrackerApplicationTests {
 		assertEquals(3, found.size());
 	}
 
+	@Test
+	public void canFindWhiskyByDistilleryAndAge(){
+		Distillery distillery1 = distilleryRepository.findDistilleryById(1L);
+		List<Whisky> found = whiskyRepository.findWhiskyByDistilleryAndAge(distillery1, 15);
+		assertEquals("The Glendronach Revival", found.get(0).getName());
+	}
 }
