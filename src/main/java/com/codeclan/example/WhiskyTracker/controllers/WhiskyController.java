@@ -22,9 +22,14 @@ public class WhiskyController {
         return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="whiskies/{year}")
+    @GetMapping(value="/whiskies/year/{year}")
     public ResponseEntity<List<Whisky>> getWhiskiesByYear(@PathVariable int year){
         return new ResponseEntity<>(whiskyRepository.findAllWhiskiesByYear(year), HttpStatus.OK);
+    }
+
+    @GetMapping(value="/whiskies/id/{id}")
+    public ResponseEntity getWhiskyByID(@PathVariable Long id){
+        return new ResponseEntity(whiskyRepository.findById(id), HttpStatus.OK);
     }
 
 
